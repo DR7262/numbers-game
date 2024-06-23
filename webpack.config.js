@@ -21,11 +21,15 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
       },
+      {
+        test: /\.html$/,
+        loader: 'html-loader'
+      }
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Output Management',
+      template: "src/index.html",
     }),
   ],
 };

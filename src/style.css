@@ -1,0 +1,80 @@
+html {
+    --main-font: Helvetica, sans-serif;
+    --main-bg-color: rgb(33, 39, 50);
+    --main-font-color: rgb(230, 230, 233);
+    font-family: var(--main-font);
+    font-weight: bold;
+    background-color: var(--main-bg-color);
+    color: var(--main-font-color);
+    letter-spacing: -.5px;
+}
+
+body {
+    margin: 0 auto;
+}
+
+#main-header {
+    display: flex;
+    justify-content: space-around;
+    height: 6vh;
+    width: 100vw;
+    position: top;
+    margin: 0;
+    align-items: center;
+}
+
+#app {
+    margin: 0 auto;
+    display: flex;
+    max-width: 500px;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    padding-top: 16px;
+}
+
+#target {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    text-align: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#target-text {
+    font-size: 1rem;
+}
+
+#target-number {
+    color:var(--main-bg-color);
+    background-color: var(--main-font-color);
+    padding: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+#header-box {
+    outline: 2px white solid;
+    display: flex;
+    justify-content: space-between;
+    padding: 2px;
+    flex-grow: 1;
+    margin: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#main-footer {
+    display: flex;
+    justify-content: space-around;
+    height: 5vh;
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    align-items: center;
+    letter-spacing: -1px;
+}

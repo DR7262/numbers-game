@@ -1,4 +1,4 @@
-import './style.css';
-import { render } from './domController.js';
+import "./style.css";
+import { render } from "./domController.js";
 
 render();

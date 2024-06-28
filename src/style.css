@@ -7,6 +7,7 @@ html {
     background-color: var(--main-bg-color);
     color: var(--main-font-color);
     letter-spacing: -.5px;
+    text-align: center;
 }
 
 body {
@@ -16,8 +17,8 @@ body {
 #main-header {
     display: flex;
     justify-content: space-around;
-    height: 6vh;
-    width: 100vw;
+    height: 3rem;
+    width: 100%;
     position: top;
     margin: 0;
     align-items: center;
@@ -31,27 +32,53 @@ body {
     justify-content: space-around;
     flex-direction: column;
     padding-top: 16px;
+    gap: 50px
 }
 
 #target {
     display: flex;
     align-items: center;
     font-size: 2rem;
-    text-align: center;
     flex-direction: column;
     gap: 10px;
 }
 
-#target-text {
-    font-size: 1rem;
-}
-
-#target-number {
+#target-number,
+.gameButton {
     color:var(--main-bg-color);
     background-color: var(--main-font-color);
     padding: 6px;
     padding-top: 2px;
     padding-bottom: 2px;
+}
+
+#numbers {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.gameButton {
+    width: 50px;
+    height: 30px;
+    border-radius: 3px;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 3px 0 0 rgb(93, 93, 93);
+    transition: box-shadow .08s ease, background-color, .08s ease, translate .08s ease
+}
+
+.gameButton:active {
+    box-shadow: 0 2px 0 0 rgb(48, 48, 48);
+    background-color: rgb(211, 211, 211);
+    translate: 0 5%;
+}
+
+.gameButton:hover {
+    background-color: rgb(255, 255, 255);
 }
 
 #header-box {
@@ -70,11 +97,12 @@ body {
 #main-footer {
     display: flex;
     justify-content: space-around;
-    height: 5vh;
-    width: 100vw;
+    height: 3rem;
+    width: 100%;
     position: absolute;
     bottom: 0;
     margin: 0;
     align-items: center;
     letter-spacing: -1px;
+    font-size: .7rem;
 }

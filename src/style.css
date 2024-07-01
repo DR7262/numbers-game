@@ -52,23 +52,39 @@ body {
     padding-bottom: 2px;
 }
 
-#numbers {
+#buttons {
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#numbers,
+#operators {
+    width: 100%;
+    display: grid;
+    overflow: auto;
+    display: grid;
     gap: 10px;
-    justify-content: center;
+    padding: 10px;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
 }
 
 .gameButton {
-    width: 50px;
     height: 30px;
     border-radius: 3px;
     font-weight: bold;
     border: none;
     box-shadow: 0 3px 0 0 rgb(93, 93, 93);
-    transition: box-shadow .08s ease, background-color, .08s ease, translate .08s ease
+    transition: box-shadow .05s ease, background-color, .05s ease, translate .05s ease;
+    &.operator {
+        font-size: 1.2rem;
+        border-radius: 10px;
+        height: 30px;
+    }
 }
 
 .gameButton:active {

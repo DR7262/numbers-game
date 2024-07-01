@@ -25,7 +25,14 @@ function renderNumberButtons() {
 }
 
 function renderOperatorButtons() {
-
+    const operatorButtonContainer = document.getElementById("operators");
+    let currentOperators = ["+", "-", "x", "÷", "="]
+    for (let operation in currentOperators) {
+        let operatorButton = document.createElement("button");
+        operatorButton.classList.add("operator", "gameButton");
+        operatorButton.textContent = currentOperators[operation];
+        operatorButtonContainer.appendChild(operatorButton);
+    }
 }
 
 function renderCurrentOperation() {

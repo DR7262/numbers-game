@@ -24,12 +24,23 @@ body {
     align-items: center;
 }
 
+#header-box {
+    outline: 2px white solid;
+    display: flex;
+    justify-content: space-between;
+    padding: 2px;
+    flex-grow: 1;
+    margin: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
 #app {
     margin: 0 auto;
     display: flex;
     max-width: 500px;
-    align-items: center;
-    justify-content: space-around;
     flex-direction: column;
     padding-top: 16px;
     gap: 50px
@@ -69,7 +80,7 @@ body {
     display: grid;
     gap: 10px;
     padding: 10px;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
 }
 
@@ -81,9 +92,13 @@ body {
     box-shadow: 0 3px 0 0 rgb(93, 93, 93);
     transition: box-shadow .05s ease, background-color, .05s ease, translate .05s ease;
     &.operator {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         border-radius: 10px;
         height: 30px;
+    }
+    &.evaluate {
+        width: 30px;
+        height: 20px;
     }
 }
 
@@ -97,17 +112,39 @@ body {
     background-color: rgb(255, 255, 255);
 }
 
-#header-box {
-    outline: 2px white solid;
+#currentOperation {
+    background-color: black;
+    color: black;
+    border-radius: 9px;
     display: flex;
     justify-content: space-between;
-    padding: 2px;
-    flex-grow: 1;
-    margin: 8px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 8px;
-    padding-right: 8px;
+    height: 25px;
+    padding: 10px;
+    gap: 25px
+}
+
+.numerator,
+.answer {
+    background-color: black;
+    box-shadow: 0 3px 0 0 rgb(93, 93, 93);
+    flex: 3;
+    color: var(--main-font-color);
+}
+
+.chosenOperator,
+.equalsSign {
+    flex: 1;
+    width: 30px;
+    background-color: black;
+    color: var(--main-font-color);
+    box-shadow: 0 3px 0 0 rgb(93, 93, 93);
+}
+
+.numerator,
+.chosenOperator {
+    align-content: center;
+    border-radius: 3px;
+    font-size: 1rem;
 }
 
 #main-footer {

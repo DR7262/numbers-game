@@ -26,7 +26,7 @@ function renderNumberButtons() {
 
 function renderOperatorButtons() {
     const operatorButtonContainer = document.getElementById("operators");
-    let currentOperators = ["+", "-", "x", "÷", "="]
+    let currentOperators = ["+", "-", "x", "÷"]
     for (let operation in currentOperators) {
         let operatorButton = document.createElement("button");
         operatorButton.classList.add("operator", "gameButton");
@@ -36,7 +36,27 @@ function renderOperatorButtons() {
 }
 
 function renderCurrentOperation() {
-
+    const currentOperationContainer = document.getElementById("currentOperation");
+    let operationMembers = ["numerator left", "chosenOperator", "numerator right", "equalsSign"];
+    for (let i in operationMembers) {
+        let operationMember = document.createElement("div");
+        let listedClasses = operationMembers[i].split(/\s+/);
+        console.log(operationMembers[i].split());
+        for (let i in listedClasses) {
+            operationMember.classList.add(listedClasses[i]);
+        };
+        if (operationMember.classList.contains("chosenOperator")) {
+            //Line below to be removed once interface completed in javascript
+            operationMember.textContent = "+"
+        } else if (operationMember.classList.contains("equalsSign")) {
+            operationMember.textContent = "="
+        };
+        currentOperationContainer.appendChild(operationMember);
+    }
+    let evaluateButton = document.createElement("div");
+    evaluateButton.classList.add("answer");
+    evaluateButton.textContent = " ";
+    currentOperationContainer.appendChild(evaluateButton);
 }
 
 function renderHistory() {

@@ -60,5 +60,46 @@ function renderCurrentOperation() {
 }
 
 function renderHistory() {
-    
+    let historyContainer = document.getElementById("history");
+
+    let historyContextMenu = document.createElement("div");
+    historyContextMenu.setAttribute("id", "historyMenu")
+
+    let historyTitle = document.createElement("div");
+    historyTitle.classList.add("historyTitle")
+    historyTitle.textContent = "History"
+
+    let historyButtons = document.createElement("div");
+    historyButtons.classList.add("historyButtons")
+
+    let undoButton = document.createElement("button");
+    undoButton.classList.add("undoButton", "gameButton");
+    undoButton.textContent = "Undo";
+
+    historyButtons.appendChild(undoButton)
+
+    historyContextMenu.appendChild(historyTitle);
+    historyContextMenu.appendChild(historyButtons);
+
+    historyContainer.appendChild(historyContextMenu);
+
+    let pastOperationContainer = document.createElement("div");
+    pastOperationContainer.classList.add("pastOperation")
+    let operationMembers = ["numerator left", "chosenOperator", "numerator right", "equalsSign", "old answer"]
+    for (let i in operationMembers) {
+        let operationMember = document.createElement("div");
+        let listedClasses = operationMembers[i].split(/\s+/);
+        console.log(operationMembers[i].split());
+        for (let i in listedClasses) {
+            operationMember.classList.add(listedClasses[i]);
+        };
+        if (operationMember.classList.contains("chosenOperator")) {
+            //Line below to be removed once interface completed in javascript
+            operationMember.textContent = "+"
+        } else if (operationMember.classList.contains("equalsSign")) {
+            operationMember.textContent = "="
+        };
+        pastOperationContainer.appendChild(operationMember);
+    }
+    historyContainer.appendChild(pastOperationContainer);
 }

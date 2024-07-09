@@ -112,7 +112,8 @@ body {
     background-color: rgb(255, 255, 255);
 }
 
-#currentOperation {
+#currentOperation,
+.pastOperation {
     background-color: black;
     color: black;
     border-radius: 9px;
@@ -120,7 +121,9 @@ body {
     justify-content: space-between;
     height: 25px;
     padding: 10px;
-    gap: 25px
+    gap: 25px;
+    position: relative;
+    z-index: 1;
 }
 
 .numerator,
@@ -145,6 +148,26 @@ body {
     align-content: center;
     border-radius: 3px;
     font-size: 1rem;
+}
+
+#historyMenu {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: rgb(67, 62, 84);
+    transform: translateY(2px);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.historyTitle {
+    background-color: black;
+    color: var(--main-font-color);
+    border-radius: 5px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding: 5px;
+    transform: translateY(10px);
 }
 
 #main-footer {

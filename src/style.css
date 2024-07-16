@@ -43,7 +43,7 @@ body {
     max-width: 500px;
     flex-direction: column;
     padding-top: 16px;
-    gap: 50px
+    gap: 20px;
 }
 
 #target {
@@ -155,9 +155,9 @@ body {
     justify-content: space-between;
     padding: 10px;
     background-color: rgb(67, 62, 84);
-    transform: translateY(2px);
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    transform: translateY(5px);
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
 }
 
 .historyTitle {
@@ -167,7 +167,7 @@ body {
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
     padding: 5px;
-    transform: translateY(10px);
+    transform: translateY(8px);
 }
 
 #main-footer {

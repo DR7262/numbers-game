@@ -1,4 +1,6 @@
 import { todaysValues } from "./globals.js";
+import { currentOperation } from "./game.js";
+import { handleClick } from "./eventHandler.js";
 
 export function render() {
     renderTarget();
@@ -16,16 +18,20 @@ function renderTarget() {
 
 function renderNumberButtons() {
     const numberButtonContainer = document.getElementById("numbers");
+    clearContainer(numberButtonContainer);
     for (let number in todaysValues.numbers) {
         let numberButton = document.createElement("button");
         numberButton.classList.add("number", "gameButton")
         numberButton.textContent = todaysValues.numbers[number];
+        todaysValues.privateData.set(numberButton, todaysValues.numbers[number]);
+        numberButton.addEventListener("click", handleClick)
         numberButtonContainer.appendChild(numberButton);
     }
 }
 
 function renderOperatorButtons() {
     const operatorButtonContainer = document.getElementById("operators");
+    clearContainer(operatorButtonContainer);
     let currentOperators = ["+", "-", "x", "÷"]
     for (let operation in currentOperators) {
         let operatorButton = document.createElement("button");
@@ -37,15 +43,22 @@ function renderOperatorButtons() {
 
 function renderCurrentOperation() {
     const currentOperationContainer = document.getElementById("currentOperation");
+    clearContainer(currentOperationContainer);
     let operationMembers = ["numerator left", "chosenOperator", "numerator right", "equalsSign"];
     for (let i in operationMembers) {
         let operationMember = document.createElement("div");
         let listedClasses = operationMembers[i].split(/\s+/);
-        console.log(operationMembers[i].split());
         for (let i in listedClasses) {
             operationMember.classList.add(listedClasses[i]);
         };
-        if (operationMember.classList.contains("chosenOperator")) {
+
+        //printing operation content
+        if (operationMember.classList.contains("numerator")) {
+            if (operationMember.classList.contains("left")) {
+                operationMember.textContent = currentOperation.numerator1;
+            } else {operationMember.textContent = currentOperation.numerator2};
+        }
+        else if (operationMember.classList.contains("chosenOperator")) {
             //Line below to be removed once interface completed in javascript
             operationMember.textContent = "+"
         } else if (operationMember.classList.contains("equalsSign")) {
@@ -61,6 +74,7 @@ function renderCurrentOperation() {
 
 function renderHistory() {
     let historyContainer = document.getElementById("history");
+    clearContainer(historyContainer);
 
     let historyContextMenu = document.createElement("div");
     historyContextMenu.setAttribute("id", "historyMenu")
@@ -89,7 +103,6 @@ function renderHistory() {
     for (let i in operationMembers) {
         let operationMember = document.createElement("div");
         let listedClasses = operationMembers[i].split(/\s+/);
-        console.log(operationMembers[i].split());
         for (let i in listedClasses) {
             operationMember.classList.add(listedClasses[i]);
         };
@@ -102,4 +115,8 @@ function renderHistory() {
         pastOperationContainer.appendChild(operationMember);
     }
     historyContainer.appendChild(pastOperationContainer);
+}
+
+function clearContainer(container) {
+    container.textContent = "";
 }

@@ -1,6 +1,4 @@
-import { render } from "./domController";
-
-export { currentOperation, addNumberToOperation }
+export { currentOperation, addNumberToOperation, addOperatorToOperation }
 
 let numerator1 = '';
 let operator = '+';
@@ -19,6 +17,12 @@ function addNumberToOperation(member) {
         } else {
             currentOperation.numerator1 = member;
         }
+    }
+}
+
+function addOperatorToOperation(member) {
+    if (isMemberValid(member) == true) {
+        currentOperation.operator = member;
     }
 }
 

@@ -37,6 +37,8 @@ function renderOperatorButtons() {
         let operatorButton = document.createElement("button");
         operatorButton.classList.add("operator", "gameButton");
         operatorButton.textContent = currentOperators[operation];
+        todaysValues.privateData.set(operatorButton, currentOperators[operation])
+        operatorButton.addEventListener("click", handleClick);
         operatorButtonContainer.appendChild(operatorButton);
     }
 }
@@ -59,8 +61,7 @@ function renderCurrentOperation() {
             } else {operationMember.textContent = currentOperation.numerator2};
         }
         else if (operationMember.classList.contains("chosenOperator")) {
-            //Line below to be removed once interface completed in javascript
-            operationMember.textContent = "+"
+            operationMember.textContent = currentOperation.operator;
         } else if (operationMember.classList.contains("equalsSign")) {
             operationMember.textContent = "="
         };

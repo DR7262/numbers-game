@@ -3,6 +3,7 @@ import { currentOperation } from "./game.js";
 import { handleClick } from "./eventHandler.js";
 
 export function render() {
+    todaysValues.privateData = new WeakMap();
     renderTarget();
     renderNumberButtons();
     renderOperatorButtons();
@@ -65,6 +66,7 @@ function renderCurrentOperation() {
         } else if (operationMember.classList.contains("equalsSign")) {
             operationMember.textContent = "="
         };
+        operationMember.classList.add("gameButton")
         currentOperationContainer.appendChild(operationMember);
     }
     let evaluateButton = document.createElement("div");

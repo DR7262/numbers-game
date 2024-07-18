@@ -96,7 +96,19 @@ body {
         border-radius: 10px;
         height: 30px;
     }
-    &.evaluate {
+    &.equalsSign,
+    &.numerator,
+    &.chosenOperator {
+        background-color: white;
+        color: black;
+        width: 30px;
+        height: 20px;
+    }
+    &.equalsSign:empty,
+    &.numerator:empty,
+    &.chosenOperator:empty {
+        background-color: black;
+        color: white;
         width: 30px;
         height: 20px;
     }

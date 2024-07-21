@@ -84,7 +84,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
 }
 
-.gameButton {
+.gameButton:not(:disabled) {
     height: 30px;
     border-radius: 3px;
     font-weight: bold;
@@ -102,7 +102,7 @@ body {
         background-color: white;
         color: black;
         width: 30px;
-        height: 20px;
+        height: 25px;
     }
     &.equalsSign:empty,
     &.numerator:empty,
@@ -110,18 +110,24 @@ body {
         background-color: black;
         color: white;
         width: 30px;
-        height: 20px;
+        height: 25px;
     }
 }
 
-.gameButton:active {
+.gameButton:active:not(:disabled) {
     box-shadow: 0 2px 0 0 rgb(48, 48, 48);
     background-color: rgb(211, 211, 211);
     translate: 0 5%;
 }
 
-.gameButton:hover {
+.gameButton:hover:not(:disabled) {
     background-color: rgb(255, 255, 255);
+}
+
+.gameButton[disabled] {
+    background-color: black;
+    color: white;
+    font-weight: bold;
 }
 
 #currentOperation,

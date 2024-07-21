@@ -23,9 +23,14 @@ function renderNumberButtons() {
     for (let number in todaysValues.numbers) {
         let numberButton = document.createElement("button");
         numberButton.classList.add("number", "gameButton")
-        numberButton.textContent = todaysValues.numbers[number];
-        todaysValues.privateData.set(numberButton, todaysValues.numbers[number]);
+        numberButton.textContent = todaysValues.numbers[number].value;
         numberButton.addEventListener("click", handleClick)
+        if (todaysValues.numbers[number].available != true) {
+            numberButton.disabled = true;
+        } else {
+            numberButton.disabled = false;
+            todaysValues.privateData.set(numberButton, todaysValues.numbers[number]);
+        }
         numberButtonContainer.appendChild(numberButton);
     }
 }
@@ -33,13 +38,17 @@ function renderNumberButtons() {
 function renderOperatorButtons() {
     const operatorButtonContainer = document.getElementById("operators");
     clearContainer(operatorButtonContainer);
-    let currentOperators = ["+", "-", "x", "÷"]
-    for (let operation in currentOperators) {
+    for (let operator in todaysValues.currentOperators) {
         let operatorButton = document.createElement("button");
         operatorButton.classList.add("operator", "gameButton");
-        operatorButton.textContent = currentOperators[operation];
-        todaysValues.privateData.set(operatorButton, currentOperators[operation])
+        operatorButton.textContent = todaysValues.currentOperators[operator];
         operatorButton.addEventListener("click", handleClick);
+        if (todaysValues.currentOperators[operator] == currentOperation.operator) {
+            operatorButton.disabled = true;
+        } else {
+            operatorButton.disabled = false;
+            todaysValues.privateData.set(operatorButton, todaysValues.currentOperators[operator])
+        }
         operatorButtonContainer.appendChild(operatorButton);
     }
 }
@@ -49,7 +58,7 @@ function renderCurrentOperation() {
     clearContainer(currentOperationContainer);
     let operationMembers = ["numerator left", "chosenOperator", "numerator right", "equalsSign"];
     for (let i in operationMembers) {
-        let operationMember = document.createElement("div");
+        let operationMember = document.createElement("button");
         let listedClasses = operationMembers[i].split(/\s+/);
         for (let i in listedClasses) {
             operationMember.classList.add(listedClasses[i]);
@@ -58,21 +67,28 @@ function renderCurrentOperation() {
         //printing operation content
         if (operationMember.classList.contains("numerator")) {
             if (operationMember.classList.contains("left")) {
-                operationMember.textContent = currentOperation.numerator1;
-            } else {operationMember.textContent = currentOperation.numerator2};
-        }
-        else if (operationMember.classList.contains("chosenOperator")) {
+                operationMember.textContent = currentOperation.numerator1.value;
+                todaysValues.privateData.set(operationMember, currentOperation.numerator1)
+            } else {
+                operationMember.textContent = currentOperation.numerator2.value
+                todaysValues.privateData.set(operationMember, currentOperation.numerator2)
+            };
+        } else if (operationMember.classList.contains("chosenOperator")) {
             operationMember.textContent = currentOperation.operator;
         } else if (operationMember.classList.contains("equalsSign")) {
             operationMember.textContent = "="
         };
-        operationMember.classList.add("gameButton")
+        operationMember.classList.add("gameButton");
+        if (operationMember.childNodes == 0) {
+            operationMember.disabled = true;
+        } else operationMember.disabled = false;
+        operationMember.addEventListener("click", handleClick);
         currentOperationContainer.appendChild(operationMember);
     }
-    let evaluateButton = document.createElement("div");
-    evaluateButton.classList.add("answer");
-    evaluateButton.textContent = " ";
-    currentOperationContainer.appendChild(evaluateButton);
+    let answerContainer = document.createElement("div");
+    answerContainer.classList.add("answer");
+    answerContainer.textContent = " ";
+    currentOperationContainer.appendChild(answerContainer);
 }
 
 function renderHistory() {

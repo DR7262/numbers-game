@@ -1,6 +1,6 @@
 import { todaysValues } from "./globals";
 import { render } from "./domController";
-import { addNumberToOperation, addOperatorToOperation } from "./game";
+import { addNumberToOperation, addOperatorToOperation, currentOperation, removeNumberFromOperation } from "./game";
 
 export { handleClick }
 
@@ -11,15 +11,39 @@ function handleClick(event) {
     } else if (event.target.classList.contains("operator")) {
         handleOperatorClick(event);
         render();
+    } else if (event.target.classList.contains("numerator")) {
+        handleNumeratorClick(event);
+        render();
+    } else if (event.target.classList.contains("chosenOperator")) {
+        handleChosenOperatorClick();
+        render();
     }
 }
 
 function handleNumberClick(event) {
-    const number = todaysValues.privateData.get(event.target);
+    const number = todaysValues.privateData.get(event.target)
     addNumberToOperation(number);
+    number.toggleAvailability();
 }
 
 function handleOperatorClick(event) {
     const operator = todaysValues.privateData.get(event.target);
     addOperatorToOperation(operator);
+}
+
+function handleNumeratorClick(event) {
+    let numeratorSide
+    let numerator = todaysValues.privateData.get(event.target);
+
+    if (event.target.classList.contains("left")) {
+        numeratorSide = "left"
+    } else if (event.target.classList.contains("right")){
+        numeratorSide = "right"
+    }
+
+    removeNumberFromOperation(numerator, numeratorSide)
+}
+
+function handleChosenOperatorClick() {
+    currentOperation.operator = '';
 }

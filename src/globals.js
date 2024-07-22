@@ -2,7 +2,7 @@ export { todaysValues };
 
 let target = 200
 
-let numbers = [10, 25, 7, 50, 2, 8]
+let numbers = [10, 20, 7, 50, 2, 8]
 
 let currentOperators = ["+", "-", "x", "÷"]
 

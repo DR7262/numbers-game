@@ -87,7 +87,7 @@ function renderCurrentOperation() {
     }
     let answerContainer = document.createElement("div");
     answerContainer.classList.add("answer");
-    answerContainer.textContent = " ";
+    answerContainer.textContent = currentOperation.answer;
     currentOperationContainer.appendChild(answerContainer);
 }
 

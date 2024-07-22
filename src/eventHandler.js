@@ -1,6 +1,11 @@
 import { todaysValues } from "./globals";
 import { render } from "./domController";
-import { addNumberToOperation, addOperatorToOperation, currentOperation, removeNumberFromOperation } from "./game";
+import { addNumberToOperation, 
+    addOperatorToOperation, 
+    currentOperation, 
+    removeNumberFromOperation,
+    getAnswerToOperation, 
+    setAnswerToOperation } from "./game";
 
 export { handleClick }
 
@@ -16,6 +21,9 @@ function handleClick(event) {
         render();
     } else if (event.target.classList.contains("chosenOperator")) {
         handleChosenOperatorClick();
+        render();
+    } else if (event.target.classList.contains("equalsSign")) {
+        handleEqualsSignClick();
         render();
     }
 }
@@ -45,5 +53,9 @@ function handleNumeratorClick(event) {
 }
 
 function handleChosenOperatorClick() {
-    currentOperation.operator = '';
+    currentOperation.operator = ''
+}
+
+function handleEqualsSignClick() {
+    setAnswerToOperation(getAnswerToOperation());
 }

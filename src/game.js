@@ -4,16 +4,19 @@ export { currentOperation,
     addNumberToOperation, 
     addOperatorToOperation, 
     getAnswerToOperation,
-    removeNumberFromOperation }
+    removeNumberFromOperation,
+    setAnswerToOperation }
 
 let numerator1 = '';
 let operator = '';
 let numerator2 = '';
+let answer;
 
 const currentOperation = {
     numerator1: numerator1,
     operator: operator,
-    numerator2: numerator2
+    numerator2: numerator2,
+    answer: answer
 }
 
 function addNumberToOperation(numberObj) {
@@ -47,36 +50,38 @@ function addOperatorToOperation(member) {
 function getAnswerToOperation() {
     const { numerator1, operator, numerator2 } = currentOperation;
 
-    console.log(numerator1, numerator2, operator);
-
     let result;
 
     switch (operator) {
         case '+':
-            result = numerator1 + numerator2;
+            result = numerator1.value + numerator2.value;
             break;
         case '-':
-            result = numerator1 - numerator2;
+            result = numerator1.value - numerator2.value;
             break;
-        case '*':
-            result = numerator1 * numerator2;
+        case 'x':
+            result = numerator1.value * numerator2.value;
             break;
-        case '/':
-            if (numerator1 % numerator2 !== 0) {
-              throw new Error("The result of the division must be an integer.");
-            }
-            result = numerator1 / numerator2;
+        case '÷':
+            result = numerator1.value / numerator2.value;
             break;
         default:
-            throw new Error("Invalid operator.");
-    }
-
-    // Check if the result is a positive integer
-    if (!Number.isInteger(result) || result <= 0) {
-        throw new Error("The result must be a positive integer.");
+            console.log("Invalid operator.");
     }
 
     return result;
+}
+
+function setAnswerToOperation(answer) {
+    if (isAnswerValid(answer)) {
+        currentOperation.answer = answer;
+    } else { currentOperation.answer = "NaN" }
+}
+
+function isAnswerValid(answer) {
+    if (answer < 0 || answer % 1 != 0) {
+        return false
+    } else { return true }
 }
 
 function isOperatorValid(operator) {

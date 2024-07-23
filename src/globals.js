@@ -1,4 +1,4 @@
-export { todaysValues };
+export { todaysValues, numberObj };
 
 let target = 200
 

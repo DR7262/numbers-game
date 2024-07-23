@@ -1,11 +1,14 @@
-import { todaysValues } from "./globals";
+import { todaysValues, numberObj } from "./globals";
 
 export { currentOperation, 
     addNumberToOperation, 
     addOperatorToOperation, 
     getAnswerToOperation,
+    isAnswerValid,
     removeNumberFromOperation,
-    setAnswerToOperation }
+    setAnswerToOperation,
+    addNumberToNumberList,
+    clearOperation }
 
 let numerator1 = '';
 let operator = '';
@@ -66,16 +69,39 @@ function getAnswerToOperation() {
             result = numerator1.value / numerator2.value;
             break;
         default:
-            console.log("Invalid operator.");
+            break;
     }
 
     return result;
 }
 
 function setAnswerToOperation(answer) {
-    if (isAnswerValid(answer)) {
-        currentOperation.answer = answer;
-    } else { currentOperation.answer = "NaN" }
+    if (isOperationFilled()) {
+        if (isAnswerValid(answer)) {
+            currentOperation.answer = answer;
+        } else { currentOperation.answer = "NaN" }
+    } else {currentOperation.answer = undefined}
+}
+
+function addNumberToNumberList(number) {
+    let newNumber = new numberObj(number, true);
+    todaysValues.numbers.push(newNumber);
+}
+
+function clearOperation() {
+    currentOperation.numerator1 = '';
+    currentOperation.operator = '';
+    currentOperation.numerator2 = '';
+    currentOperation.answer = undefined;
+}
+
+function isOperationFilled() {
+    for (let key in currentOperation) {
+        if (currentOperation[key] === '') {
+            return false;
+        }
+    }
+    return true;
 }
 
 function isAnswerValid(answer) {

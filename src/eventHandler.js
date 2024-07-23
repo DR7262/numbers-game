@@ -4,8 +4,11 @@ import { addNumberToOperation,
     addOperatorToOperation, 
     currentOperation, 
     removeNumberFromOperation,
-    getAnswerToOperation, 
-    setAnswerToOperation } from "./game";
+    getAnswerToOperation,
+    isAnswerValid, 
+    setAnswerToOperation,
+    addNumberToNumberList,
+    clearOperation } from "./game";
 
 export { handleClick }
 
@@ -31,12 +34,14 @@ function handleClick(event) {
 function handleNumberClick(event) {
     const number = todaysValues.privateData.get(event.target)
     addNumberToOperation(number);
+    setAnswerToOperation(getAnswerToOperation());
     number.toggleAvailability();
 }
 
 function handleOperatorClick(event) {
     const operator = todaysValues.privateData.get(event.target);
     addOperatorToOperation(operator);
+    setAnswerToOperation(getAnswerToOperation())
 }
 
 function handleNumeratorClick(event) {
@@ -50,12 +55,17 @@ function handleNumeratorClick(event) {
     }
 
     removeNumberFromOperation(numerator, numeratorSide)
+    setAnswerToOperation(getAnswerToOperation())
 }
 
 function handleChosenOperatorClick() {
     currentOperation.operator = ''
+    setAnswerToOperation(getAnswerToOperation())
 }
 
 function handleEqualsSignClick() {
-    setAnswerToOperation(getAnswerToOperation());
+    if (isAnswerValid(getAnswerToOperation())) {
+        addNumberToNumberList(currentOperation.answer);
+        clearOperation();
+    }
 }

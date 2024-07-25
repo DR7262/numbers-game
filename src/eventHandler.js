@@ -8,7 +8,9 @@ import { addNumberToOperation,
     isAnswerValid, 
     setAnswerToOperation,
     addNumberToNumberList,
-    clearOperation } from "./game";
+    clearOperation, 
+    addOperationToHistory,
+    undoLastOperation } from "./game";
 
 export { handleClick }
 
@@ -27,6 +29,9 @@ function handleClick(event) {
         render();
     } else if (event.target.classList.contains("equalsSign")) {
         handleEqualsSignClick();
+        render();
+    } else if (event.target.classList.contains("undoButton")) {
+        handleUndoButtonClick();
         render();
     }
 }
@@ -66,6 +71,13 @@ function handleChosenOperatorClick() {
 function handleEqualsSignClick() {
     if (isAnswerValid(getAnswerToOperation())) {
         addNumberToNumberList(currentOperation.answer);
-        clearOperation();
+        addOperationToHistory(currentOperation);
+        clearOperation(currentOperation);
+    }
+}
+
+function handleUndoButtonClick() {
+    if (todaysValues.history.length > 0) {
+        undoLastOperation();
     }
 }

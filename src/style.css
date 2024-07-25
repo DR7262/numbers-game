@@ -49,7 +49,7 @@ body {
 #target {
     display: flex;
     align-items: center;
-    font-size: 2rem;
+    font-size: 2.2rem;
     flex-direction: column;
     gap: 10px;
 }
@@ -84,8 +84,9 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
 }
 
-.gameButton:not(:disabled) {
-    height: 30px;
+.gameButton {
+    height: 35px;
+    font-size: 1.2rem;
     border-radius: 3px;
     font-weight: bold;
     border: none;
@@ -128,6 +129,7 @@ body {
     background-color: black;
     color: white;
     font-weight: bold;
+    box-shadow: 0 3px 0 0 rgb(41, 41, 41);
 }
 
 #currentOperation,
@@ -172,10 +174,11 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    background-color: rgb(67, 62, 84);
+    background-color: rgba(67, 62, 84, 0);
     transform: translateY(5px);
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
+    flex-direction: row-reverse;
 }
 
 .historyTitle {
@@ -185,7 +188,12 @@ body {
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
     padding: 5px;
-    transform: translateY(8px);
+    transform: translateY(11px);
+    order: 2;
+}
+
+.historyButtons {
+    order: 1;
 }
 
 #main-footer {

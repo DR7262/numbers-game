@@ -8,19 +8,23 @@ export { currentOperation,
     removeNumberFromOperation,
     setAnswerToOperation,
     addNumberToNumberList,
-    clearOperation }
+    clearOperation,
+    addOperationToHistory,
+    undoLastOperation }
 
 let numerator1 = '';
 let operator = '';
 let numerator2 = '';
 let answer;
 
-const currentOperation = {
-    numerator1: numerator1,
-    operator: operator,
-    numerator2: numerator2,
-    answer: answer
+function operationObj(numerator1, operator, numerator2, answer) {
+    this.numerator1 = numerator1;
+    this.operator = operator;
+    this.numerator2 = numerator2;
+    this.answer = answer;
 }
+
+const currentOperation = new operationObj(numerator1, operator, numerator2, answer);
 
 function addNumberToOperation(numberObj) {
     if (numberObj.available) {
@@ -88,11 +92,27 @@ function addNumberToNumberList(number) {
     todaysValues.numbers.push(newNumber);
 }
 
-function clearOperation() {
-    currentOperation.numerator1 = '';
-    currentOperation.operator = '';
-    currentOperation.numerator2 = '';
-    currentOperation.answer = undefined;
+function addOperationToHistory(operation) {
+    const { numerator1, operator, numerator2, answer} = operation;
+    let pastOperation = new operationObj(numerator1, operator, numerator2, answer);
+    todaysValues.history.push(pastOperation);
+}
+
+function undoLastOperation() {
+    let lastOperationIndex = todaysValues.history.length - 1;
+    let lastNumberIndex = todaysValues.numbers.length -1;
+    const lastOperation = todaysValues.history[lastOperationIndex]
+    lastOperation.numerator1.toggleAvailability();
+    lastOperation.numerator2.toggleAvailability();
+    todaysValues.history.splice(lastOperationIndex, 1);
+    todaysValues.numbers.splice(lastNumberIndex, 1);
+}
+
+function clearOperation(operation) {
+    operation.numerator1 = "";
+    operation.numerator2 = "";
+    operation.operator = "";
+    operation.answer = "";
 }
 
 function isOperationFilled() {

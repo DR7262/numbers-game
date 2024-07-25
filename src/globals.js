@@ -23,9 +23,12 @@ for (let i in numbers) {
 
 const privateData = new WeakMap();
 
+let history = []
+
 const todaysValues = {
     target: target,
     numbers: numberObjList,
     privateData: privateData,
-    currentOperators: currentOperators
+    currentOperators: currentOperators,
+    history: history
 }

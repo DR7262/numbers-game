@@ -108,32 +108,42 @@ function renderHistory() {
     let undoButton = document.createElement("button");
     undoButton.classList.add("undoButton", "gameButton");
     undoButton.textContent = "Undo";
+    undoButton.addEventListener("click", handleClick)
 
     historyButtons.appendChild(undoButton)
-
-    historyContextMenu.appendChild(historyTitle);
+    if (todaysValues.history.length > 0) {
+        historyContextMenu.appendChild(historyTitle);
+    }
     historyContextMenu.appendChild(historyButtons);
 
     historyContainer.appendChild(historyContextMenu);
 
-    let pastOperationContainer = document.createElement("div");
-    pastOperationContainer.classList.add("pastOperation")
-    let operationMembers = ["numerator left", "chosenOperator", "numerator right", "equalsSign", "old answer"]
-    for (let i in operationMembers) {
-        let operationMember = document.createElement("div");
-        let listedClasses = operationMembers[i].split(/\s+/);
-        for (let i in listedClasses) {
-            operationMember.classList.add(listedClasses[i]);
-        };
-        if (operationMember.classList.contains("chosenOperator")) {
-            //Line below to be removed once interface completed in javascript
-            operationMember.textContent = "+"
-        } else if (operationMember.classList.contains("equalsSign")) {
-            operationMember.textContent = "="
-        };
-        pastOperationContainer.appendChild(operationMember);
+    for (let operation in todaysValues.history) {
+        let pastOperationContainer = document.createElement("div");
+        pastOperationContainer.classList.add("pastOperation")
+        let operationMembers = ["numerator left", "chosenOperator", "numerator right", "equalsSign", "old answer"]
+        for (let i in operationMembers) {
+            let operationMember = document.createElement("div");
+            let listedClasses = operationMembers[i].split(/\s+/);
+            for (let i in listedClasses) {
+                operationMember.classList.add(listedClasses[i]);
+            };
+            if (operationMember.classList.contains("left")) {
+                operationMember.textContent = todaysValues.history[operation].numerator1.value
+            } else if (operationMember.classList.contains("right")) {
+                operationMember.textContent = todaysValues.history[operation].numerator2.value
+            } else if (operationMember.classList.contains("chosenOperator")) {
+                operationMember.textContent = todaysValues.history[operation].operator
+            } else if (operationMember.classList.contains("equalsSign")) {
+                operationMember.textContent = "="
+            } else if (operationMember.classList.contains("answer")) {
+                operationMember.textContent = todaysValues.history[operation].answer
+            };
+            pastOperationContainer.appendChild(operationMember);
+        }
+        historyContainer.appendChild(pastOperationContainer);
     }
-    historyContainer.appendChild(pastOperationContainer);
+    
 }
 
 function clearContainer(container) {

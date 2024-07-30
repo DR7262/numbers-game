@@ -1,8 +1,7 @@
 export { todaysValues, numberObj };
+import { generateGame } from "./generator";
 
-let target = 200
-
-let numbers = [10, 20, 7, 50, 2, 8]
+let { numbers, target, expression } = generateGame();
 
 let currentOperators = ["+", "-", "x", "÷"]
 
@@ -30,5 +29,8 @@ const todaysValues = {
     numbers: numberObjList,
     privateData: privateData,
     currentOperators: currentOperators,
-    history: history
+    history: history,
+    solution: expression
 }
+
+console.log(todaysValues.solution)

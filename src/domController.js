@@ -79,7 +79,7 @@ function renderCurrentOperation() {
             operationMember.textContent = "="
         };
         operationMember.classList.add("gameButton");
-        if (operationMember.childNodes == 0) {
+        if (operationMember.textContent == '') {
             operationMember.disabled = true;
         } else operationMember.disabled = false;
         operationMember.addEventListener("click", handleClick);

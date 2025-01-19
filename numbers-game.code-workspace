@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "todo",
+			"path": "../../todo"
+		},
+		{
+			"name": "calculator",
+			"path": "../../calculator"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "todo"
+	}
+}

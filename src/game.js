@@ -10,7 +10,8 @@ export { currentOperation,
     addNumberToNumberList,
     clearOperation,
     addOperationToHistory,
-    undoLastOperation }
+    undoLastOperation,
+    checkForWin }
 
 let numerator1 = '';
 let operator = '';
@@ -106,6 +107,7 @@ function undoLastOperation() {
     lastOperation.numerator2.toggleAvailability();
     todaysValues.history.splice(lastOperationIndex, 1);
     todaysValues.numbers.splice(lastNumberIndex, 1);
+    clearOperation(currentOperation);
 }
 
 function clearOperation(operation) {
@@ -134,4 +136,10 @@ function isOperatorValid(operator) {
     if (todaysValues.currentOperators.includes(operator)) {
         return true;
     } else return false
+}
+
+function checkForWin(answer) {
+    if (answer == todaysValues.target) {
+        return true
+    } else return false;
 }

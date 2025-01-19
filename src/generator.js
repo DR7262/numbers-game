@@ -33,7 +33,7 @@ function getTodaysDate() {
 
 function createPRNG(seed) {
     return function() {
-        seed = (seed * 1664525 + 1013904223) % 4294967296;
+        seed = (seed * 1664526 + 1013904223) % 4294967296;
         return seed / 4294967296;
     };
 }
@@ -47,7 +47,7 @@ function generateGame(seedDate, numberCount = 6) {
     const numbers = generateNumbers(random, largeNumbers, smallNumbers, numberCount);
 
     function getRandomOperation() {
-        const operations = ['+', '-', '*', '/'];
+        const operations = ['+', '-', 'x', '/'];
         return operations[Math.floor(random() * operations.length)];
     }
 
@@ -55,7 +55,7 @@ function generateGame(seedDate, numberCount = 6) {
         switch (operation) {
             case '+': return a + b;
             case '-': return a - b;
-            case '*': return a * b;
+            case 'x': return a * b;
             case '/': return b !== 0 ? a / b : null;
         }
     }

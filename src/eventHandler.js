@@ -10,7 +10,8 @@ import { addNumberToOperation,
     addNumberToNumberList,
     clearOperation, 
     addOperationToHistory,
-    undoLastOperation } from "./game";
+    undoLastOperation,
+    checkForWin } from "./game";
 
 export { handleClick }
 
@@ -72,7 +73,9 @@ function handleEqualsSignClick() {
     if (isAnswerValid(getAnswerToOperation())) {
         addNumberToNumberList(currentOperation.answer);
         addOperationToHistory(currentOperation);
-        clearOperation(currentOperation);
+        if (checkForWin(currentOperation.answer)) {
+            console.log("You win!")
+        } else clearOperation(currentOperation);
     }
 }
 

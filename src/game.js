@@ -107,6 +107,12 @@ function undoLastOperation() {
     lastOperation.numerator2.toggleAvailability();
     todaysValues.history.splice(lastOperationIndex, 1);
     todaysValues.numbers.splice(lastNumberIndex, 1);
+    if (currentOperation.numerator1 !== "") {
+        currentOperation.numerator1.toggleAvailability();
+    }
+    if (currentOperation.numerator2 !== "") {
+        currentOperation.numerator2.toggleAvailability();
+    }
     clearOperation(currentOperation);
 }
 
